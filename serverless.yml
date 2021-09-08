@@ -1,9 +1,12 @@
-org: cnine
-provider: tencent
 service: my-serverless-graphql-api
+ss-graphql-api
 
-component: scf
-name: my-serverless-graphql-api
+provider: # provider information
+  name: tencent
+  runtime: Nodejs12.16
+
+plugins:
+  - serverless-tencent-scf
 
 inputs:
   src: ./
