@@ -6,19 +6,18 @@ on:
       - main
 
 jobs:
-  check-quality-and-build-preview:
+  deploy:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [14.x]
-    name: Check quality and build
+    name: Deploy
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+
+    - uses: bahmutov/npm-install@v1
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
+        install-command: yarn --frozen-lockfile --silent
 
     - uses: cschleiden/replace-tokens@v1
       with:
