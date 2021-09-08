@@ -1,4 +1,6 @@
 org: cnine
+provider: tencent
+service: my-serverless-graphql-api
 
 component: scf
 name: my-serverless-graphql-api
