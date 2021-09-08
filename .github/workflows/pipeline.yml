@@ -31,21 +31,12 @@ jobs:
         DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
 
-    # - name: serverless deploy
-    #   uses: serverless/github-action@master
-    #   with:
-    #     args: deploy
-    #   env:
-    #     TENCENT_APP_ID: ${{ secrets.TENCENT_APP_ID }}
-    #     TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
-    #     TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
-    #     TENCENT_TOKEN: ${{ secrets.TENCENT_TOKEN }}
-
-    - name: Serverless Deploy
-      uses: tegud/serverless-github-action@1.52.0
+    - name: serverless deploy
+      uses: serverless/github-action@master
       with:
-        command: deploy
+        args: deploy
       env:
+        SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
         TENCENT_APP_ID: ${{ secrets.TENCENT_APP_ID }}
         TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
         TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
