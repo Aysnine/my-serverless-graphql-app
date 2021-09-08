@@ -1,3 +1,5 @@
+org: cnine
+
 component: scf
 name: my-serverless-graphql-api
 
