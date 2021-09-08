@@ -1,16 +1,8 @@
-const books = [
-  {
-    title: 'The Awakening',
-    author: 'Kate Chopin',
-  },
-  {
-    title: 'City of Glass',
-    author: 'Paul Auster',
-  },
-];
-
 module.exports = {
   Query: {
-    books: () => books,
+    books: async (_, __, { dataSources }) => {
+      const result = await dataSources.db.getBooks();
+      return result
+    },
   },
 }

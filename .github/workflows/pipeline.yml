@@ -1,0 +1,43 @@
+name: Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-quality-and-build-preview:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    name: Check quality and build
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+
+    - uses: cschleiden/replace-tokens@v1
+      with:
+        tokenPrefix: '{'
+        tokenSuffix: '}'
+        files: '["serverless.yml"]'
+      env:
+        DATABASE_HOST: ${{ DATABASE_HOST }}
+        DATABASE_PORT: ${{ DATABASE_PORT }}
+        DATABASE_USER: ${{ DATABASE_USER }}
+        DATABASE_PASSWORD: ${{ DATABASE_PASSWORD }}
+        DATABASE_NAME: ${{ DATABASE_NAME }}
+
+    - name: serverless deploy
+      uses: serverless/github-action@master
+      with:
+        args: deploy
+      env:
+        TENCENT_APP_ID: ${{ secrets.TENCENT_APP_ID }}
+        TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
+        TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
+        TENCENT_TOKEN: ${{ secrets.TENCENT_TOKEN }}

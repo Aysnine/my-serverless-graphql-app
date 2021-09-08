@@ -3,15 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^3.3.0",
     "apollo-server-lambda": "^3.3.0",
-    "graphql": "^15.5.2"
+    "datasource-sql": "^1.5.0",
+    "graphql": "^15.5.2",
+    "mysql": "^2.18.1"
   }
 }
