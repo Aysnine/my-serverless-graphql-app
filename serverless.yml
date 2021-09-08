@@ -1,7 +1,7 @@
 service: my-serverless-graphql-api
 ss-graphql-api
 
-provider: # provider information
+provider:
   name: tencent
   runtime: Nodejs12.16
 
