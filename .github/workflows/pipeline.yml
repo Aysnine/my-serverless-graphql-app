@@ -36,10 +36,9 @@ jobs:
         provider: tencent
         serverless_version: 2.4.0
       env:
-        SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
         TENCENT_APPID: ${{ secrets.TENCENT_APP_ID }}
         TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
         TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY}}
         TENCENT_TOKEN: ${{ secrets.TENCENT_TOKEN}}
 
-    - run: sls deploy --login
+    - run: SERVERLESS_ACCESS_KEY=${{ secrets.SERVERLESS_ACCESS_KEY }} sls deploy
