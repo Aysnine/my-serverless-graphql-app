@@ -31,14 +31,13 @@ jobs:
         DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
 
-    - name: Make env
-      run: |
-        echo ${{ secrets.TENCENT_APP_ID }} >> .env
-        echo ${{ secrets.TENCENT_SECRET_ID }} >> .env
-        echo ${{ secrets.TENCENT_SECRET_KEY }} >> .env
-        echo ${{ secrets.TENCENT_TOKEN }} >> .env
+    - uses: Teakowa/setup-serverless@v2.0.0
+      with:
+        provider: tencent
+      env:
+        TENCENT_APPID: ${{ secrets.TENCENT_APP_ID }}
+        TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
+        TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY}}
+        TENCENT_TOKEN: ${{ secrets.TENCENT_TOKEN}}
 
-    - name: Deploy
-      run: |
-        set SERVERLESS_ACCESS_KEY=${{ secrets.SERVERLESS_ACCESS_KEY }}
-        npx serverless deploy
+    - run: sls deploy
