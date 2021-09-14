@@ -34,6 +34,7 @@ jobs:
     - uses: Teakowa/setup-serverless@v2.0.0
       with:
         provider: tencent
+        serverless_version: 2.4.0
       env:
         TENCENT_APPID: ${{ secrets.TENCENT_APP_ID }}
         TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
