@@ -41,4 +41,4 @@ jobs:
         TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY}}
         TENCENT_TOKEN: ${{ secrets.TENCENT_TOKEN}}
 
-    - run: SERVERLESS_ACCESS_KEY=${{ secrets.SERVERLESS_ACCESS_KEY }} sls deploy
+    - run: sls deploy
