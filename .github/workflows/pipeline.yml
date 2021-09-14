@@ -31,12 +31,13 @@ jobs:
         DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
 
-    - name: serverless deploy
-      uses: serverless/github-action@master
-      with:
-        args: deploy
-      env:
-        TENCENT_APP_ID: ${{ secrets.TENCENT_APP_ID }}
-        TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
-        TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
-        TENCENT_TOKEN: ${{ secrets.TENCENT_TOKEN }}
+    - name: Make env
+      run: |
+        echo ${{ secrets.TENCENT_APP_ID }} >> .env
+        echo ${{ secrets.TENCENT_SECRET_ID }} >> .env
+        echo ${{ secrets.TENCENT_SECRET_KEY }} >> .env
+        echo ${{ secrets.TENCENT_TOKEN }} >> .env
+
+    - name: Deploy
+      run: |
+        npx serverless deploy

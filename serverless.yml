@@ -1,12 +1,5 @@
-service: my-serverless-graphql-api
+component: scf
 name: my-serverless-graphql-api
-
-provider:
-  name: tencent
-  runtime: Nodejs12.16
-
-plugins:
-  - serverless-tencent-scf
 
 inputs:
   src: ./
